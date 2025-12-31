@@ -1,4 +1,53 @@
-<section class="countdown">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Romeo & Juliet</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="hero">
+        <div id="welcome-screen">
+    <div class="welcome-content">
+        <p>The Wedding of</p>
+        <h1>Romeo & Juliet</h1>
+        <div class="guest-box-welcome">
+            <p>Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+            <h2 id="guest-name-welcome">Tamu Undangan</h2>
+        </div>
+        <button id="btn-open" onclick="bukaUndangan()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
+                <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 1 0V4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5V6a.5.5 0 0 0 1 0V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM0 10v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-1 0v1.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V10a.5.5 0 0 0-1 0Z"/>
+                <path d="M8 1a2 2 0 0 0-2 2v2H5V3a3 3 0 1 1 6 0v2h-1V3a2 2 0 0 0-2-2ZM5 5H3a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2v1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h2V5Z"/>
+            </svg>
+            Buka Undangan
+        </button>
+    </div>
+</div>
+    </header>
+
+    <section class="details">
+        <h2>Save The Date</h2>
+        <div class="event-container">
+            <div class="event-card">
+                <h3>Akad Nikah</h3>
+                <p>Pukul 09.00 - 10.00 WIB</p>
+                <p>Masjid Agung Kota</p>
+                <p>Jl. Melati No. 123, Jakarta</p>
+            </div>
+            <div class="event-card">
+                <h3>Resepsi</h3>
+                <p>Pukul 11.00 - selesai</p>
+                <p>Gedung Serbaguna Utama</p>
+                <p>Jl. Melati No. 124, Jakarta</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="countdown">
     <h2>Menghitung Hari</h2>
     <div id="timer">
         <div class="timer-item">
@@ -19,3 +68,62 @@
         </div>
     </div>
 </section>
+
+    <section class="rsvp">
+        <h2>Konfirmasi Kehadiran</h2>
+        <form id="rsvp-form">
+            <input type="text" placeholder="Nama Lengkap" required>
+            <select required>
+                <option value="">Apakah Anda akan hadir?</option>
+                <option value="yes">Ya, Saya Hadir</option>
+                <option value="no">Maaf, Tidak Bisa Hadir</option>
+            </select>
+            <button type="submit">Kirim Pesan</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>Dibuat dengan &hearts; oleh Bayu & Sheva</p>
+    </footer>
+<script>
+    // Fungsi untuk mengambil parameter 'to' dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const namaTamu = urlParams.get('to');
+
+    // Jika ada nama di URL, ubah teks di website
+    if (namaTamu) {
+        document.getElementById('guest-name').innerText = namaTamu;
+    } else {
+        // Jika tidak ada nama, tampilkan teks default
+        document.getElementById('guest-name').innerText = "Tamu Undangan";
+
+    }
+    // Tambahkan class no-scroll ke body saat baru buka
+document.body.classList.add('no-scroll');
+
+// Fungsi ambil nama dari URL
+const urlParams = new URLSearchParams(window.location.search);
+const namaTamu = urlParams.get('to');
+if (namaTamu) {
+    const text = namaTamu.replace(/\+/g, ' ');
+    document.getElementById('guest-name').innerText = text;
+    document.getElementById('guest-name-welcome').innerText = text;
+}
+
+// Fungsi Buka Undangan
+function bukaUndangan() {
+    // 1. Sembunyikan layar pembuka
+    const screen = document.getElementById('welcome-screen');
+    screen.style.transform = 'translateY(-100%)';
+    
+    // 2. Izinkan scroll kembali
+    document.body.classList.remove('no-scroll');
+    
+    // 3. Putar Musik
+    const music = document.getElementById('wedding-music');
+    music.play();
+}
+</script>
+
+</body>
+</html>
